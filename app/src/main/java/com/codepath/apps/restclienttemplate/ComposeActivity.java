@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 public class ComposeActivity extends AppCompatActivity {
 
+    public static final int MAX_TWEET_LENGTH = 280;
+
     EditText multiLineCompose;
     Button buttonTweet;
 
@@ -29,7 +31,7 @@ public class ComposeActivity extends AppCompatActivity {
                     Toast.makeText(ComposeActivity.this, "Sorry, Tweet cannot be Empty", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (tweetContent.length() > 140) {
+                if (tweetContent.length() > MAX_TWEET_LENGTH) {
                     Toast.makeText(ComposeActivity.this, tweetContent, Toast.LENGTH_LONG).show();
                 }
             }

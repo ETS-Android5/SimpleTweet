@@ -6,30 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".ComposeActivity">
 
-    <EditText
-        android:id="@+id/multiLineCompose"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutCompose"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="@string/whats_happening"
-        android:inputType="textMultiLine"
-        android:minLines="5"
-        android:autofillHints="" />
+        app:counterEnabled="true"
+        app:counterMaxLength="280">
+
+        <EditText
+            android:id="@+id/multiLineCompose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="@string/whats_happening"
+            android:inputType="textMultiLine"
+            android:minLines="5" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/buttonTweet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/multiLineCompose"
+        android:layout_below="@+id/textInputLayoutCompose"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:backgroundTint="#00ACEE"
         android:text="@string/tweet"
         android:textColor="#FFFFFF" />
+
 </RelativeLayout>
