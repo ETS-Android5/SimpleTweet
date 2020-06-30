@@ -44,4 +44,14 @@
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/textViewName"
         tools:text="\@aimervyn" />
+
+    <TextView
+        android:id="@+id/textViewCreatedAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/textViewScreenName"
+        tools:text="2h" />
 </RelativeLayout>
