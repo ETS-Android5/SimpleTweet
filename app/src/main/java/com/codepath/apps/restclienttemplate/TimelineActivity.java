@@ -47,16 +47,32 @@ public class TimelineActivity extends AppCompatActivity {
 
         client = TwitterApplication.getRestClient(context);
 
+        swipeContainer = findViewById(R.id.swipeContainer);
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.i(TAG, "fetching new data");
+                populateHomeTimeLine();
+            }
+        });
+
         recyclerViewTweets = findViewById(R.id.recyclerViewTweets);
         tweets = new ArrayList<>();
         adapter = new TweetsAdapter(context, tweets);
-        swipeContainer = findViewById(R.id.swipeContainer);
 
         recyclerViewTweets.setLayoutManager(new LinearLayoutManager(context));
         recyclerViewTweets.setAdapter(adapter);
 
         populateHomeTimeLine();
 
+        composeTweet();
+    }
+
+    private void composeTweet() {
         final Toolbar bar = findViewById(R.id.toolBar);
         bar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -88,8 +104,9 @@ public class TimelineActivity extends AppCompatActivity {
                 Log.i(TAG, "onSuccess! " + json.toString());
                 JSONArray jsonArray = json.jsonArray;
                 try {
-                    tweets.addAll(Tweet.fromJsonArray(jsonArray));
-                    adapter.notifyDataSetChanged();
+                    adapter.clear();
+                    adapter.addAll(Tweet.fromJsonArray(jsonArray));
+                    swipeContainer.setRefreshing(false);
                 } catch (JSONException e) {
                     Log.e(TAG, "json exception",  e);
                 }
