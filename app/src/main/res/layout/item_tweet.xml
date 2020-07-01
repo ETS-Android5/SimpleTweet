@@ -24,6 +24,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/itemViewProfileImage"
+        android:textStyle="bold"
         tools:text="aimervyn" />
 
     <TextView

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +37,7 @@ public class TimelineActivity extends AppCompatActivity {
     RecyclerView recyclerViewTweets;
     List<Tweet> tweets;
     TweetsAdapter adapter;
+    SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class TimelineActivity extends AppCompatActivity {
         recyclerViewTweets = findViewById(R.id.recyclerViewTweets);
         tweets = new ArrayList<>();
         adapter = new TweetsAdapter(context, tweets);
+        swipeContainer = findViewById(R.id.swipeContainer);
 
         recyclerViewTweets.setLayoutManager(new LinearLayoutManager(context));
         recyclerViewTweets.setAdapter(adapter);
