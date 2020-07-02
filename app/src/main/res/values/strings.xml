@@ -10,5 +10,6 @@
     <string name="compose">Compose</string>
     <string name="profile_image">profile image</string>
     <string name="embededmedia">embededMedia</string>
+    <string name="twitter_logo">twitter logo</string>
 
 </resources>

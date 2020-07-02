@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.parceler.Parcels;
@@ -38,6 +39,7 @@ public class ComposeActivity extends AppCompatActivity {
         multiLineCompose = findViewById(R.id.multiLineCompose);
         buttonTweet = findViewById(R.id.buttonTweet);
 
+
         buttonTweet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,9 +49,10 @@ public class ComposeActivity extends AppCompatActivity {
                     return;
                 }
                 if (tweetContent.length() > MAX_TWEET_LENGTH) {
-                    Toast.makeText(ComposeActivity.this, tweetContent, Toast.LENGTH_LONG).show();
+                    Toast.makeText(ComposeActivity.this, "Sorry, Tweet cannot be over " + MAX_TWEET_LENGTH + " charcters", Toast.LENGTH_LONG).show();
                     return;
                 }
+
                 client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Headers headers, JSON json) {

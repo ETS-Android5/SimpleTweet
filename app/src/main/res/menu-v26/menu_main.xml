@@ -4,6 +4,8 @@
     <item
         android:id="@+id/compose"
         android:icon="@drawable/ic_vector_compose"
+        android:iconTintMode="src_atop"
+        android:iconTint="#FFFFFF"
         android:title="@string/compose"
         android:visible="true"
         app:showAsAction="always" />
