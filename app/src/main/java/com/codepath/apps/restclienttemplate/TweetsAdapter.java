@@ -95,12 +95,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             Glide.with(context).load(tweet.user.profileImageUrl)
                                .into(imageViewProfileImage);
             if (!tweet.mediaUrl.isEmpty()) {
+                imageViewMedia.setVisibility(View.VISIBLE);
                 Glide.with(context).load(tweet.mediaUrl)
                                    .override(Target.SIZE_ORIGINAL)
                                    .into(imageViewMedia);
             }
             else {
-                imageViewMedia.setVisibility(View.INVISIBLE);
+                imageViewMedia.setVisibility(View.GONE);
             }
         }
     }
