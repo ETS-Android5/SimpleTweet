@@ -39,35 +39,19 @@ public class TimelineActivity extends AppCompatActivity {
     TweetsAdapter adapter;
     SwipeRefreshLayout swipeContainer;
     EndlessRecyclerViewScrollListener scrollListener;
+    LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
-        context = this;
 
+        context = this;
+        layoutManager = new LinearLayoutManager(context);
         client = TwitterApplication.getRestClient(context);
 
-        swipeContainer = findViewById(R.id.swipeContainer);
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Log.i(TAG, "fetching new data");
-                populateHomeTimeLine();
-            }
-        });
-
-        recyclerViewTweets = findViewById(R.id.recyclerViewTweets);
-        tweets = new ArrayList<>();
-        adapter = new TweetsAdapter(context, tweets);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        recyclerViewTweets.setLayoutManager(layoutManager);
-        recyclerViewTweets.setAdapter(adapter);
+        setupSwipeContainer();
+        setupRecyclerView();
 
         scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
             @Override
@@ -81,8 +65,31 @@ public class TimelineActivity extends AppCompatActivity {
 
 
         populateHomeTimeLine();
-
         composeTweet();
+    }
+
+    private void setupSwipeContainer() {
+        swipeContainer = findViewById(R.id.swipeContainer);
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.i(TAG, "fetching new data");
+                populateHomeTimeLine();
+            }
+        });
+    }
+
+    private void setupRecyclerView() {
+        recyclerViewTweets = findViewById(R.id.recyclerViewTweets);
+        tweets = new ArrayList<>();
+        adapter = new TweetsAdapter(context, tweets);
+
+        recyclerViewTweets.setLayoutManager(layoutManager);
+        recyclerViewTweets.setAdapter(adapter);
     }
 
     private void loadMoreData() {
