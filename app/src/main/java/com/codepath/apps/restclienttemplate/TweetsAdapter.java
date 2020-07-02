@@ -91,7 +91,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             textViewBody.setText(tweet.body);
             textViewName.setText(tweet.user.name);
             textViewScreenName.setText(String.format("@%s", tweet.user.screenName));
-            textViewCreatedAt.setText(getRelativeTimeAgo(tweet.createdAt));
+            textViewCreatedAt.setText(TimeFormatter.getTimeDifference(tweet.createdAt));
             Glide.with(context).load(tweet.user.profileImageUrl)
                                .into(imageViewProfileImage);
             if (!tweet.mediaUrl.isEmpty()) {
@@ -102,23 +102,6 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             else {
                 imageViewMedia.setVisibility(View.INVISIBLE);
             }
-        }
-
-        public String getRelativeTimeAgo(String rawJsonDate) {
-            String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
-            SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
-            sf.setLenient(true);
-
-            String relativeDate = "";
-            try {
-                long dateMillis = sf.parse(rawJsonDate).getTime();
-                relativeDate = DateUtils.getRelativeTimeSpanString(dateMillis,
-                        System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS, DateUtils.FORMAT_ABBREV_ALL).toString();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            return relativeDate;
         }
     }
 }
