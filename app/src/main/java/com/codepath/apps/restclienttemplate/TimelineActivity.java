@@ -38,6 +38,7 @@ public class TimelineActivity extends AppCompatActivity {
     List<Tweet> tweets;
     TweetsAdapter adapter;
     SwipeRefreshLayout swipeContainer;
+    EndlessRecyclerViewScrollListener scrollListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +65,27 @@ public class TimelineActivity extends AppCompatActivity {
         tweets = new ArrayList<>();
         adapter = new TweetsAdapter(context, tweets);
 
-        recyclerViewTweets.setLayoutManager(new LinearLayoutManager(context));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        recyclerViewTweets.setLayoutManager(layoutManager);
         recyclerViewTweets.setAdapter(adapter);
+
+        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                Log.i(TAG, "onLoadMore: " + page);
+                loadMoreData();
+            }
+        };
+
+        recyclerViewTweets.addOnScrollListener(scrollListener);
+
 
         populateHomeTimeLine();
 
         composeTweet();
+    }
+
+    private void loadMoreData() {
     }
 
     private void composeTweet() {
