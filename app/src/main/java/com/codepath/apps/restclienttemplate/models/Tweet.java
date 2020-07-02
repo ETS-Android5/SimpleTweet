@@ -1,5 +1,7 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,6 +16,7 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
+    public String mediaUrl;
 
     public Tweet() {}
 
@@ -22,6 +25,17 @@ public class Tweet {
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+
+        Log.i("Tweet", "fromJson: " + jsonObject.getJSONObject("entities").toString());
+        if (jsonObject.getJSONObject("entities").has("media")) {
+            tweet.mediaUrl = jsonObject.getJSONObject("entities")
+                    .getJSONArray("media")
+                    .getJSONObject(0)
+                    .getString("media_url_https");
+        }
+        else {
+            tweet.mediaUrl = "";
+        }
         return tweet;
     }
 
