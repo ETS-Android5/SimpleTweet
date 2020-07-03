@@ -55,7 +55,6 @@ GIF created with [Kap](https://getkap.co).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
 
 ## Open-source libraries used
 
