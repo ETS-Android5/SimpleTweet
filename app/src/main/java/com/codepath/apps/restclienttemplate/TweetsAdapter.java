@@ -81,6 +81,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         ImageView imageViewMedia;
         ImageView imageViewLike;
         TextView textViewLikes;
+        ImageView imageViewRetweet;
+        TextView textViewRetweets;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -98,6 +100,15 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 public void onClick(View view) {
                     imageViewLike.setImageDrawable(context.getDrawable(R.drawable.ic_vector_heart));
                     textViewLikes.setTextColor(context.getResources().getColor(R.color.medium_red));
+                }
+            });
+            imageViewRetweet = itemView.findViewById(R.id.imageViewRetweet);
+            textViewRetweets = itemView.findViewById(R.id.textViewRetweets);
+            imageViewRetweet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    imageViewRetweet.setImageDrawable(context.getDrawable(R.drawable.ic_vector_retweet));
+                    textViewRetweets.setTextColor(context.getResources().getColor(R.color.medium_green));
                 }
             });
         }
@@ -120,6 +131,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 imageViewMedia.setVisibility(View.GONE);
             }
             textViewLikes.setText(Integer.toString(tweet.favoriteCount));
+            textViewRetweets.setText(Integer.toString(tweet.retweetCount));
         }
     }
 }

@@ -19,6 +19,7 @@ public class Tweet {
     public User user;
     public String mediaUrl;
     public int favoriteCount;
+    public int retweetCount;
 
 
     public Tweet() {}
@@ -30,6 +31,7 @@ public class Tweet {
         tweet.id = jsonObject.getLong("id");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         tweet.favoriteCount = jsonObject.getInt("favorite_count");
+        tweet.retweetCount = jsonObject.getInt("retweet_count");
 
         if (jsonObject.has("retweeted_status")) {
             JSONObject retweetedStatus = jsonObject.getJSONObject("retweeted_status");
