@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemTweet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:background="#FFFFFF"
+    >
 
     <ImageView
         android:id="@+id/itemViewProfileImage"
@@ -23,6 +26,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/itemViewProfileImage"
+        android:fontFamily="@font/helveticaneuebold"
+        android:textColor="#000000"
         android:textStyle="bold"
         tools:text="aimervyn" />
 
@@ -34,6 +39,8 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="3dp"
         android:layout_toEndOf="@+id/itemViewProfileImage"
+        android:fontFamily="@font/helviticaneuelight"
+        android:textColor="#000000"
         tools:text="This is my first tweet!" />
 
     <TextView
@@ -44,6 +51,8 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/textViewName"
+        android:fontFamily="@font/helviticaneuelight"
+        android:textColor="@color/medium_gray"
         tools:text="\@aimervyn" />
 
     <TextView
@@ -54,6 +63,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/textViewScreenName"
+        android:fontFamily="@font/helviticaneuelight"
+        android:textColor="@color/medium_gray"
         tools:text="2h" />
 
     <ImageView

@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.target.Target;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
@@ -19,6 +21,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
 
@@ -93,6 +97,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             textViewScreenName.setText(String.format("@%s", tweet.user.screenName));
             textViewCreatedAt.setText(TimeFormatter.getTimeDifference(tweet.createdAt));
             Glide.with(context).load(tweet.user.profileImageUrl)
+                               .transform(new CircleCrop())
                                .into(imageViewProfileImage);
             if (!tweet.mediaUrl.isEmpty()) {
                 imageViewMedia.setVisibility(View.VISIBLE);
