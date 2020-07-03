@@ -18,6 +18,8 @@ public class Tweet {
     public long id;
     public User user;
     public String mediaUrl;
+    public int favoriteCount;
+
 
     public Tweet() {}
 
@@ -27,7 +29,16 @@ public class Tweet {
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.id = jsonObject.getLong("id");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.favoriteCount = jsonObject.getInt("favorite_count");
 
+        if (jsonObject.has("retweeted_status")) {
+            JSONObject retweetedStatus = jsonObject.getJSONObject("retweeted_status");
+            if (retweetedStatus != null) {
+                if (retweetedStatus.has("favorite_count")) {
+                    tweet.favoriteCount = retweetedStatus.getInt("favorite_count");
+                }
+            }
+        }
         Log.i("Tweet", "fromJson: " + jsonObject.getJSONObject("entities").toString());
         if (jsonObject.getJSONObject("entities").has("media")) {
             tweet.mediaUrl = jsonObject.getJSONObject("entities")

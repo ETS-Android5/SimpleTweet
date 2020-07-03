@@ -11,5 +11,7 @@
     <string name="profile_image">profile image</string>
     <string name="embededmedia">embededMedia</string>
     <string name="twitter_logo">twitter logo</string>
+    <string name="retweet">retweet</string>
+    <string name="like">like</string>
 
 </resources>

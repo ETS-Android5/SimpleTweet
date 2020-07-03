@@ -73,22 +73,33 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         ImageView imageViewProfileImage;
         TextView textViewName;
         TextView textViewScreenName;
         TextView textViewBody;
         TextView textViewCreatedAt;
         ImageView imageViewMedia;
+        ImageView imageViewLike;
+        TextView textViewLikes;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             imageViewProfileImage = itemView.findViewById(R.id.itemViewProfileImage);
             textViewName = itemView.findViewById(R.id.textViewName);
             textViewScreenName = itemView.findViewById(R.id.textViewScreenName);
             textViewBody = itemView.findViewById(R.id.textViewTweetBody);
             textViewCreatedAt = itemView.findViewById(R.id.textViewCreatedAt);
             imageViewMedia = itemView.findViewById(R.id.imageViewMedia);
+            imageViewLike = itemView.findViewById(R.id.imageViewLike);
+            textViewLikes = itemView.findViewById(R.id.textViewLikes);
+            imageViewLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    imageViewLike.setImageDrawable(context.getDrawable(R.drawable.ic_vector_heart));
+                    textViewLikes.setTextColor(context.getResources().getColor(R.color.medium_red));
+                }
+            });
         }
 
         public void bind(Tweet tweet) {
@@ -108,6 +119,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             else {
                 imageViewMedia.setVisibility(View.GONE);
             }
+            textViewLikes.setText(Integer.toString(tweet.favoriteCount));
         }
     }
 }

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemTweet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:background="#FFFFFF"
-    >
+    android:backgroundTint="#FFFFFF">
 
     <ImageView
         android:id="@+id/itemViewProfileImage"
@@ -78,4 +79,57 @@
         android:contentDescription="@string/embededmedia"
         android:visibility="visible"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/imageViewRetweet"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/imageViewMedia"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="4dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:contentDescription="@string/retweet"
+        app:srcCompat="@drawable/ic_vector_retweet_stroke"
+        tools:srcCompat="@drawable/ic_vector_retweet_stroke" />
+
+    <ImageView
+        android:id="@+id/imageViewLike"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/imageViewMedia"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="5dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:contentDescription="@string/like"
+        android:onClick="pressLike"
+        app:srcCompat="@drawable/ic_vector_heart_stroke"
+        tools:srcCompat="@drawable/ic_vector_heart_stroke" />
+
+    <TextView
+        android:id="@+id/textViewRetweets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageViewMedia"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/imageViewRetweet"
+        android:text=""
+        android:textColor="@color/medium_gray"
+        tools:text="3.4k" />
+
+    <TextView
+        android:id="@+id/textViewLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageViewMedia"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/imageViewLike"
+        android:text=""
+        android:textColor="@color/medium_gray"
+        tools:text="9.9k" />
 </RelativeLayout>
