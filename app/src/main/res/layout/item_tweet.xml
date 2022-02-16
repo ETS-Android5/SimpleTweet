@@ -42,6 +42,7 @@
         android:layout_toEndOf="@+id/itemViewProfileImage"
         android:fontFamily="@font/helviticaneuelight"
         android:textColor="#000000"
+        android:autoLink="all"
         tools:text="This is my first tweet!" />
 
     <TextView
