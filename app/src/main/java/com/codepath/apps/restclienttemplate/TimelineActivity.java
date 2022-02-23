@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +43,7 @@ public class TimelineActivity extends AppCompatActivity {
     TweetsAdapter adapter;
     SwipeRefreshLayout swipeContainer;
     EndlessRecyclerViewScrollListener scrollListener;
+    FloatingActionButton floatingActionButtonCompose;
     LinearLayoutManager layoutManager;
 
     @Override
@@ -117,21 +119,12 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     private void composeTweet() {
-        final Toolbar bar = findViewById(R.id.toolBar);
-        bar.setOnHoverListener(new View.OnHoverListener() {
+        floatingActionButtonCompose = findViewById(R.id.floatingActionButton);
+        floatingActionButtonCompose.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onHover(View view, MotionEvent motionEvent) {
-                return true;
-            }
-        });
-        bar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.compose) {
-                    Intent intent = new Intent(context, ComposeActivity.class);
-                    startActivityForResult(intent, REQUEST_CODE);
-                }
-                return true;
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ComposeActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
             }
         });
     }

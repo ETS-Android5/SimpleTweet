@@ -1,12 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/compose"
-        android:icon="@drawable/ic_vector_compose"
-        android:iconTintMode="src_atop"
-        android:iconTint="#FFFFFF"
-        android:title="@string/compose"
-        android:visible="true"
-        app:showAsAction="always" />
-</menu>
+    xmlns:app="http://schemas.android.com/apk/res-auto"/>

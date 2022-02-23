@@ -13,5 +13,6 @@
     <string name="twitter_logo">twitter logo</string>
     <string name="retweet">retweet</string>
     <string name="like">like</string>
+    <string name="button_to_compose_tweet">Button to compose tweet</string>
 
 </resources>
